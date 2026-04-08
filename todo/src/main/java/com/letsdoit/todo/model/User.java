@@ -32,6 +32,5 @@ public class User  implements Serializable {
 
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<Category> category;
+
 }
