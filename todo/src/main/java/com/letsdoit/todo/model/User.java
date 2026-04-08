@@ -19,7 +19,7 @@ import java.util.List;
 public class User  implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue( strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
 
     private String firstName;
