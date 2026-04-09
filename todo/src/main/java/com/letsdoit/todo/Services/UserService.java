@@ -57,4 +57,43 @@ public class UserService {
         return userMapper.toDTO(user);
     }
 
+    public  UserResponseDto getUserById(Long id ){
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+
+    return  userMapper.toDTO(user);
+    }
+
+    public void hardDelete(Long id ){
+        User user =userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id "+id));
+
+
+
+
+        userRepository.delete(user);
+    }
+
+    public void softDeleteUser(Long id ){
+        User user=userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("user not found with "+id));
+
+        user.setIs_deleted(true);
+        userRepository.save(user);
+
+    }
+
+    public void restoreUser(Long id ){
+        User user= userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("user not found with id "+id));
+
+        if  (!user.getIs_deleted()){
+            throw  new IllegalStateException("Uer is not deleted ");
+        }
+
+        user.setIs_deleted(false);
+        user.setDeletedAt(null);
+        userRepository.save(user);
+
+    }
+
 }
