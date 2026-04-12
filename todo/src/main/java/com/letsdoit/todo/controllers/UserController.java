@@ -1,7 +1,6 @@
 package com.letsdoit.todo.controllers;
 
 import com.letsdoit.todo.Services.UserService;
-import com.letsdoit.todo.dto.ApiResponseDto;
 import com.letsdoit.todo.dto.CreateUserDTo;
 import com.letsdoit.todo.dto.UpdateUserDto;
 import com.letsdoit.todo.dto.UserResponseDto;
@@ -63,7 +62,7 @@ public class UserController {
         Map<String,String > response=new HashMap<>();
         response.put("message","user permanently deleted");
         response.put("userId","User permanently deleted");
-        
+        return ResponseEntity.ok(response);
 
 }
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    public User toEntity(CreateUserDTo dto) {
+    public static User toEntity(CreateUserDTo dto) {
         User user = new User();
 
         user.setFirstName(dto.getFirstName());
@@ -24,7 +24,7 @@ public class UserMapper {
     }
 
 
-    public void updateEntity(User user, UpdateUserDto dto) {
+    public static void updateEntity(User user, UpdateUserDto dto) {
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setEmail(dto.getEmail());
