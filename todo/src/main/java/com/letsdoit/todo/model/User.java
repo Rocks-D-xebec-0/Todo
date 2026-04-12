@@ -1,16 +1,13 @@
 package com.letsdoit.todo.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -19,7 +16,7 @@ import java.util.List;
 public class User  implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue( strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
 
     private String firstName;
@@ -31,6 +28,9 @@ public class User  implements Serializable {
     private String userName;
 
     private String password;
+
+    private Boolean is_deleted;
+    private LocalDateTime deletedAt;
 
 
 }
