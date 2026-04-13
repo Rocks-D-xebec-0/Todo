@@ -17,8 +17,7 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+
 
 
     public TodoDto save(TodoDto todoDto){
