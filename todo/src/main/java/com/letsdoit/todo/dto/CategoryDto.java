@@ -32,8 +32,11 @@ public class CategoryDto {
         category.setId(categoryDto.getId());
         category.setName(categoryDto.getName());
         category.setDescription(categoryDto.getDescription());
-        category.setUser(UserMapper.toEntity(categoryDto.getUser()));
 
+
+        if (categoryDto.getUser() != null) {
+            category.setUser(UserMapper.toEntity(categoryDto.getUser()));
+        }
         return category;
     }
 
