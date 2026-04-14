@@ -2,6 +2,7 @@ package com.letsdoit.todo.Services;
 
 
 import com.letsdoit.todo.dto.TodoDto;
+import com.letsdoit.todo.mapper.TodoMapper;
 import com.letsdoit.todo.repositories.CategoryRepository;
 import com.letsdoit.todo.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,15 @@ public class TodoService {
 
     public TodoDto save(TodoDto todoDto){
 
-        var todo = TodoDto.toEntity(todoDto);
+        var todo = TodoMapper.toEntity(todoDto);
         var saved =todoRepository.save(todo);
 
-        return  TodoDto.fromEntity(saved);
+        return  TodoMapper.fromEntity(saved);
     }
 
     public List<TodoDto> finAll(){
         return  todoRepository.findAll().stream()
-                .map(TodoDto::fromEntity)
+                .map(TodoMapper::fromEntity)
                 .collect(Collectors.toList()) ;
 
     }

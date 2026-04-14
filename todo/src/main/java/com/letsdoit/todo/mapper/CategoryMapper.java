@@ -28,7 +28,7 @@ public class CategoryMapper {
                 .name(category.getName())
                 .description(category.getDescription())
                 .toDoList(
-                        category.getTodoList() != null ? category.getTodoList().stream().map(TodoDto::fromEntity)
+                        category.getTodoList() != null ? category.getTodoList().stream().map(TodoMapper::fromEntity)
                                                          .collect(Collectors.toList()) : null).build();
     }
 }
