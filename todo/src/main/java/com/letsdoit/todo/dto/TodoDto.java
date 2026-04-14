@@ -1,6 +1,7 @@
 package com.letsdoit.todo.dto;
 
 
+import com.letsdoit.todo.mapper.CategoryMapper;
 import com.letsdoit.todo.model.Todo;
 import com.letsdoit.todo.model.User;
 import lombok.AllArgsConstructor;
@@ -46,7 +47,7 @@ public class TodoDto {
         );
 
         if (todoDto.getCategory() !=null ){
-            todo.setCategory(CategoryDto.toEntity(todoDto.getCategory()));
+            todo.setCategory(CategoryMapper.toEntity(todoDto.getCategory()));
 
         }
 
