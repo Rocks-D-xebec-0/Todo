@@ -1,8 +1,8 @@
 package com.letsdoit.todo.Services;
 
-import com.letsdoit.todo.dto.CreateUserDTo;
-import com.letsdoit.todo.dto.UpdateUserDto;
-import com.letsdoit.todo.dto.UserResponseDto;
+import com.letsdoit.todo.dto.create.UserCreateDto;
+import com.letsdoit.todo.dto.update.UserUpdateDto;
+import com.letsdoit.todo.dto.reponse.UserResponseDto;
 import com.letsdoit.todo.exceptions.BadRequestException;
 import com.letsdoit.todo.exceptions.ResourceNotFoundException;
 import com.letsdoit.todo.mapper.UserMapper;
@@ -23,7 +23,7 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public UserResponseDto createUser(CreateUserDTo userDto) {
+    public UserResponseDto createUser(UserCreateDto userDto) {
         if (userDto == null) {
             throw new BadRequestException("User data cannot be null");
         }
@@ -40,7 +40,7 @@ public class UserService {
                 .toList();
     }
 
-    public UserResponseDto updateUser(Long id, UpdateUserDto userDto) {
+    public UserResponseDto updateUser(Long id, UserUpdateDto userDto) {
         if (id == null || id <= 0) {
             throw new BadRequestException("Invalid user ID: ID must be a positive number");
         }

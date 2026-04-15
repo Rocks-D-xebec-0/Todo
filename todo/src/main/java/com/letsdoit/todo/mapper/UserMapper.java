@@ -1,17 +1,16 @@
 package com.letsdoit.todo.mapper;
 
 
-import com.letsdoit.todo.dto.CreateUserDTo;
-import com.letsdoit.todo.dto.UpdateUserDto;
-import com.letsdoit.todo.dto.UserResponseDto;
+import com.letsdoit.todo.dto.create.UserCreateDto;
+import com.letsdoit.todo.dto.update.UserUpdateDto;
+import com.letsdoit.todo.dto.reponse.UserResponseDto;
 import com.letsdoit.todo.model.User;
-import lombok.Builder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
 
-    public static User toEntity(CreateUserDTo dto) {
+    public static User toEntity(UserCreateDto dto) {
         User user = new User();
 
         user.setFirstName(dto.getFirstName());
@@ -24,7 +23,7 @@ public class UserMapper {
     }
 
 
-    public static void updateEntity(User user, UpdateUserDto dto) {
+    public static void updateEntity(User user, UserUpdateDto dto) {
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setEmail(dto.getEmail());

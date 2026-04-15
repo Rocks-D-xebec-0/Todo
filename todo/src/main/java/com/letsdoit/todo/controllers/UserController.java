@@ -1,9 +1,9 @@
 package com.letsdoit.todo.controllers;
 
 import com.letsdoit.todo.Services.UserService;
-import com.letsdoit.todo.dto.CreateUserDTo;
-import com.letsdoit.todo.dto.UpdateUserDto;
-import com.letsdoit.todo.dto.UserResponseDto;
+import com.letsdoit.todo.dto.create.UserCreateDto;
+import com.letsdoit.todo.dto.update.UserUpdateDto;
+import com.letsdoit.todo.dto.reponse.UserResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> createUser(@Valid @RequestBody CreateUserDTo dto) {
+    public ResponseEntity<UserResponseDto> createUser(@Valid @RequestBody UserCreateDto dto) {
         UserResponseDto response = userService.createUser(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -38,7 +38,7 @@ public class UserController {
     @PutMapping("/update/{id}")
     public ResponseEntity<UserResponseDto> updateUser(
             @PathVariable Long id,
-            @RequestBody UpdateUserDto userDto) {
+            @RequestBody UserUpdateDto userDto) {
         UserResponseDto response = userService.updateUser(id, userDto);
         return ResponseEntity.ok(response);
     }

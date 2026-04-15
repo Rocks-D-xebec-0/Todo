@@ -1,4 +1,4 @@
-package com.letsdoit.todo.dto;
+package com.letsdoit.todo.dto.reponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
