@@ -7,7 +7,6 @@ import com.letsdoit.todo.dto.update.TodoUpdateDto;
 import com.letsdoit.todo.mapper.TodoMapper;
 import com.letsdoit.todo.model.Todo;
 import com.letsdoit.todo.repositories.TodoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,7 +49,7 @@ public   TodoResponse createTodo(TodoCreateDto todoCreateDto){
 
 
 
-    public  void delete(Long id ){
+    public  void hardDelete(Long id ){
         if ( id ==null)
         {
             return;
@@ -58,6 +57,7 @@ public   TodoResponse createTodo(TodoCreateDto todoCreateDto){
         todoRepository.deleteById(id);
         
     }
+
 
 
 

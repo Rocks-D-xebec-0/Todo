@@ -5,7 +5,6 @@ import com.letsdoit.todo.Services.TodoService;
 import com.letsdoit.todo.dto.create.TodoCreateDto;
 import com.letsdoit.todo.dto.reponse.TodoResponse;
 import com.letsdoit.todo.dto.update.TodoUpdateDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class TodoController {
 
     @DeleteMapping("/hard/{id}")
     public void deleteTodo(@PathVariable Long id ){
-        service.delete(id);
+        service.hardDelete(id);
     }
 
 
