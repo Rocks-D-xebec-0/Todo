@@ -1,7 +1,9 @@
 package com.letsdoit.todo.mapper;
 
 
-import com.letsdoit.todo.dto.TodoDto;
+import com.letsdoit.todo.dto.create.TodoCreateDto;
+import com.letsdoit.todo.dto.reponse.TodoResponse;
+import com.letsdoit.todo.dto.update.TodoUpdateDto;
 import com.letsdoit.todo.model.Todo;
 import org.springframework.stereotype.Component;
 
@@ -12,35 +14,42 @@ public class TodoMapper {
 
 
 
-    public static Todo toEntity(TodoDto todoDto) {
+    public  Todo toEntity(TodoCreateDto todoDto) {
         final Todo todo = new Todo();
-        todo.setId(todoDto.getId());
-        todo.setTitle(todoDto.getTitle());
-        todo.setDescription(todoDto.getDescription());
-        todo.setDone(todoDto.isDone());
-        todo.setFavorite(todoDto.isFavourite());
+        todo.setTitle(todoDto.title());
+        todo.setDescription(todoDto.description());
+        todo.setDone(false);
+        todo.setFavorite(false);
         todo.setStartDate(
-                todoDto.getStartDate() !=  null
-                        ? todoDto.getStartDate()
+                todoDto.categoryId() !=  null
+                        ? todoDto.startDate()
                         : ZonedDateTime.now()
         );
-
-        if (todoDto.getCategory() !=null ){
-            todo.setCategory(CategoryMapper.toEntity(todoDto.getCategory()));
-
-        }
 
         return todo;
     }
 
-    public static TodoDto fromEntity(Todo todo) {
-        return TodoDto.builder()
-                .id(todo.getId())
-                .title(todo.getTitle())
-                .description(todo.getDescription())
-                .startDate(todo.getStartDate())
-                .done(todo.isDone())
-                .favourite(todo.isFavorite())
-                .build();
+    public  TodoResponse toResponse(Todo todo) {
+        return new TodoResponse(
+                todo.getId(),
+                todo.getTitle(),
+                todo.getDescription(),
+                todo.getStartDate(),
+                todo.isDone(),
+                todo.isFavorite(),
+                todo.getCategory() != null ? todo.getCategory().getId() : null,
+                todo.getCategory() != null ? todo.getCategory().getName() : null
+
+        );
     }
+
+
+    public  void updateEntity(Todo todo , TodoUpdateDto todoUpdateDto){
+
+     todo.setTitle(todoUpdateDto.title());
+     todo.setDescription(todoUpdateDto.description());
+     todo.setDone( todoUpdateDto.done());
+     todo.setFavorite(todoUpdateDto.favourite());
+    }
+
 }

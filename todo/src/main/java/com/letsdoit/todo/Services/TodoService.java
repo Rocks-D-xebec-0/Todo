@@ -1,9 +1,11 @@
 package com.letsdoit.todo.Services;
 
 
-import com.letsdoit.todo.dto.TodoDto;
+import com.letsdoit.todo.dto.create.TodoCreateDto;
+import com.letsdoit.todo.dto.reponse.TodoResponse;
+import com.letsdoit.todo.dto.update.TodoUpdateDto;
 import com.letsdoit.todo.mapper.TodoMapper;
-import com.letsdoit.todo.repositories.CategoryRepository;
+import com.letsdoit.todo.model.Todo;
 import com.letsdoit.todo.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,23 +17,33 @@ import java.util.stream.Collectors;
 public class TodoService {
 
 
-    @Autowired
-    private TodoRepository todoRepository;
+
+    private final  TodoRepository todoRepository;
+    private final   TodoMapper todoMapper;
 
 
-
-
-    public TodoDto save(TodoDto todoDto){
-
-        var todo = TodoMapper.toEntity(todoDto);
-        var saved =todoRepository.save(todo);
-
-        return  TodoMapper.fromEntity(saved);
+    public  TodoService(TodoRepository todoRepository,TodoMapper todoMapper){
+        this.todoRepository=todoRepository;
+        this.todoMapper=todoMapper;
     }
 
-    public List<TodoDto> finAll(){
+public   TodoResponse createTodo(TodoCreateDto todoCreateDto){
+    Todo todo=todoMapper.toEntity(todoCreateDto);
+    Todo savedTodo=todoRepository.save(todo);
+
+    return todoMapper.toResponse(savedTodo);
+}
+
+
+
+    public TodoResponse update(TodoUpdateDto todoDto,Long id){
+        var todo = todoRepository.findById(id).orElseThrow(()-> new RuntimeException("Todo not found with id: " + id));
+        return  todoMapper.toResponse(todo) ;
+    }
+
+    public List<TodoResponse> finAll(){
         return  todoRepository.findAll().stream()
-                .map(TodoMapper::fromEntity)
+                .map(todoMapper::toResponse)
                 .collect(Collectors.toList()) ;
 
     }

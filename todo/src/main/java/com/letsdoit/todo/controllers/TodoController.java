@@ -2,7 +2,9 @@ package com.letsdoit.todo.controllers;
 
 
 import com.letsdoit.todo.Services.TodoService;
-import com.letsdoit.todo.dto.TodoDto;
+import com.letsdoit.todo.dto.create.TodoCreateDto;
+import com.letsdoit.todo.dto.reponse.TodoResponse;
+import com.letsdoit.todo.dto.update.TodoUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,26 +14,29 @@ import java.util.List;
 @RequestMapping("/api/todos")
 public class TodoController {
 
-    @Autowired
-    private TodoService service;
 
+    private final TodoService service;
+
+    public  TodoController(TodoService todoService){
+        this.service=todoService;
+    }
 
 
     @PostMapping("/create")
-    public TodoDto createTodo(@RequestBody TodoDto todoDto){
-        return service.save(todoDto);
+    public TodoResponse createTodo(@RequestBody TodoCreateDto todoDto){
+        return service.createTodo(todoDto);
     }
 
 
     @PutMapping("/update/{id}")
-    public TodoDto updateTodo(@PathVariable TodoDto todoDto){
-        return service.save(todoDto);
+    public TodoResponse updateTodo(@PathVariable TodoUpdateDto todoUpdateDto ,@PathVariable Long id ){
+        return service.update(todoUpdateDto,id);
     }
 
 
 
     @GetMapping("/all")
-    public List<TodoDto> getAllTodos(Long todoId){
+    public List<TodoResponse> getAllTodos(){
         return service.finAll();
     }
 
