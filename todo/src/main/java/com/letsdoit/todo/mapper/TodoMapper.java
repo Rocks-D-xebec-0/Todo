@@ -14,14 +14,18 @@ public class TodoMapper {
 
 
 
-    public  Todo toEntity(TodoCreateDto todoDto) {
+    public Todo toEntity(TodoCreateDto todoDto) {
+        if (todoDto == null) {
+            return null;
+        }
+        
         final Todo todo = new Todo();
         todo.setTitle(todoDto.title());
         todo.setDescription(todoDto.description());
         todo.setDone(false);
         todo.setFavorite(false);
         todo.setStartDate(
-                todoDto.categoryId() !=  null
+                todoDto.startDate() != null
                         ? todoDto.startDate()
                         : ZonedDateTime.now()
         );
@@ -29,7 +33,11 @@ public class TodoMapper {
         return todo;
     }
 
-    public  TodoResponse toResponse(Todo todo) {
+    public TodoResponse toResponse(Todo todo) {
+        if (todo == null) {
+            return null;
+        }
+        
         return new TodoResponse(
                 todo.getId(),
                 todo.getTitle(),
@@ -44,12 +52,19 @@ public class TodoMapper {
     }
 
 
-    public  void updateEntity(Todo todo , TodoUpdateDto todoUpdateDto){
+    public void updateEntity(Todo todo , TodoUpdateDto todoUpdateDto){
+        if (todo == null || todoUpdateDto == null) {
+            return;
+        }
 
-     todo.setTitle(todoUpdateDto.title());
-     todo.setDescription(todoUpdateDto.description());
-     todo.setDone( todoUpdateDto.done());
-     todo.setFavorite(todoUpdateDto.favourite());
+        if (todoUpdateDto.title() != null) {
+            todo.setTitle(todoUpdateDto.title());
+        }
+        if (todoUpdateDto.description() != null) {
+            todo.setDescription(todoUpdateDto.description());
+        }
+        todo.setDone(todoUpdateDto.done());
+        todo.setFavorite(todoUpdateDto.favourite());
     }
 
 }
