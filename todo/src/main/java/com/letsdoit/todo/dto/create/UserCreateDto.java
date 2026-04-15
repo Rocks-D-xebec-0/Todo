@@ -1,4 +1,4 @@
-package com.letsdoit.todo.dto;
+package com.letsdoit.todo.dto.create;
 
 
 import jakarta.validation.constraints.Email;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class CreateUserDTo {
+public class UserCreateDto {
 
 
     @NotBlank(message = "First name is required")
