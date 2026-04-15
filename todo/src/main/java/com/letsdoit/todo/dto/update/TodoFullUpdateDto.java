@@ -3,7 +3,7 @@ package com.letsdoit.todo.dto.update;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record TodoFullUpdateDTo(
+public record TodoFullUpdateDto(
         @NotBlank(message = "Title is required")
         @Size(max = 255)
         String title,

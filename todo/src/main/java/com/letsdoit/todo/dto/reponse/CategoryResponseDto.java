@@ -1,7 +1,5 @@
-package com.letsdoit.todo.dto;
+package com.letsdoit.todo.dto.reponse;
 
-import com.letsdoit.todo.dto.reponse.TodoResponse;
-import com.letsdoit.todo.dto.reponse.UserResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,11 +7,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryDto {
+@Data
+@Builder
+public class CategoryResponseDto {
 
     private Long id;
 
@@ -25,3 +23,4 @@ public class CategoryDto {
 
     private List<TodoResponse> toDoList;
 }
+

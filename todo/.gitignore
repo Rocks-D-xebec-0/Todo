@@ -4,6 +4,14 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Environment and Sensitive Files ###
+.env
+.env.local
+.env.*.local
+*.properties.local
+application-local.yml
+application-dev.yml
+
 ### STS ###
 .apt_generated
 .classpath
