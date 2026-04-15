@@ -1,7 +1,7 @@
 package com.letsdoit.todo.dto;
 
-import com.letsdoit.todo.dto.create.UserCreateDto;
 import com.letsdoit.todo.dto.reponse.TodoResponse;
+import com.letsdoit.todo.dto.reponse.UserResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +21,7 @@ public class CategoryDto {
 
     private String description;
 
-    private UserCreateDto user;
+    private UserResponseDto user;
 
     private List<TodoResponse> toDoList;
 }
